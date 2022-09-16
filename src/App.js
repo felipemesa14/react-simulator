@@ -1,25 +1,34 @@
+import {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    const [total] = useState(50000);
+    const [store] = useState("5d9b86cd84c9d000019a9c7c");
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://stonprdeu2appsimulator.blob.core.windows.net/integraciones-qa/simulator/simulator.js";
+        script.async = true;
+
+        document.body.appendChild(script);
+
+    }, []);
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo"/>
+
+                <p><strong>Valor Producto:</strong> {total}</p>
+
+                <app-simulator store={store} total={total}></app-simulator>
+
+                <p>Simulador de crédito para Sistecrédito en React.js</p>
+            </header>
+        </div>
+    );
 }
 
 export default App;
